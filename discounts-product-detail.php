@@ -5,7 +5,10 @@ function discount_product_detail($object) {
         'status' => 'run'
     ]]);
 
+    if(!have_posts($object)) $cartItems = Scart::getItems();
+
     foreach ($discounts as $key => $item) {
+
         //Hết hạn
         if($item->time_status == 0 && $item->time_end <= time()) {
             unset($discounts[$key]); continue;
@@ -16,10 +19,27 @@ function discount_product_detail($object) {
             unset($discounts[$key]); continue;
         }
 
-        if($item->discount_condition == 'products' && have_posts($object)) {
+        if($item->discount_condition == 'products') {
+
             $item->discount_condition_value = unserialize($item->discount_condition_value);
-            if(in_array($object->id, $item->discount_condition_value) === false) {
-                unset($discounts[$key]); continue;
+
+            if(have_posts($object)) {
+                if(in_array($object->id, $item->discount_condition_value) === false) {
+                    unset($discounts[$key]); continue;
+                }
+            }
+            if(!empty($cartItems)) {
+                $unIsset = true;
+                foreach ($cartItems as $cartItem) {
+                    $idCheck = (!empty($cartItem['variable'])) ? $cartItem['variable'] : $cartItem['id'];
+                    if(in_array($idCheck, $item->discount_condition_value) !== false) {
+                        $unIsset = false;
+                        break;
+                    }
+                }
+                if($unIsset == true) {
+                    unset($discounts[$key]); continue;
+                }
             }
         }
 
