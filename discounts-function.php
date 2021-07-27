@@ -292,13 +292,13 @@ class Discount {
         if($discount->discount_condition == 'order') {
             if($discount->discount_type_minimize == 'money') {
                 $total = Scart::total();
-                if($total < $discount->discount_condition_value) {
+                if($total < $discount->discount_value_minimize) {
                     return 'order-not-sufficient-money';
                 }
             }
             if($discount->discount_type_minimize == 'quantity') {
                 $qty = Scart::totalQty();
-                if($qty < $discount->discount_condition_value) {
+                if($qty < $discount->discount_value_minimize) {
                     return 'order-not-sufficient-quantity';
                 }
             }
@@ -321,12 +321,12 @@ class Discount {
             }
             if($quantity != 0) {
                 if($discount->discount_type_minimize == 'money') {
-                    if($total < $discount->discount_condition_value) {
+                    if($total < $discount->discount_value_minimize) {
                         return 'products-not-sufficient-money';
                     }
                 }
                 if($discount->discount_type_minimize == 'quantity') {
-                    if($quantity < $discount->discount_condition_value) {
+                    if($quantity < $discount->discount_value_minimize) {
                         return 'products-not-sufficient-quantity';
                     }
                 }

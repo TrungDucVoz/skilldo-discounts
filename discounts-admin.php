@@ -106,7 +106,7 @@ if(!class_exists('Product_Variable_Popover')) {
                 $limit      = (int)InputBuilder::post('limit');
                 $objects    = Product::gets([
                     'where'         => ['trash' => 0],
-                    'params'        => ['select' => 'id, title, image, price, price_sale', 'limit' => $limit, 'start' => $page*$limit],
+                    'params'        => ['select' => 'id, title, image, price, price_sale, parent_id', 'limit' => $limit, 'start' => $page*$limit],
                     'where_like'    => ['title' => array($keyword)]
                 ]);
                 if(have_posts($objects)) {
@@ -151,7 +151,7 @@ if(!class_exists('Product_Variable_Popover')) {
             $items = [];
             if(have_posts($listID)) {
                 $objects    = Product::gets([
-                    'params'    => ['select' => 'id, title, image, price, price_sale, type'],
+                    'params'    => ['select' => 'id, title, image, price, price_sale, type, parent_id'],
                     'where'     => ['trash' => 0, 'type <>' => 'trash'],
                     'where_in'  => ['field' => 'id', 'data' => $listID]
                 ]);
@@ -165,14 +165,17 @@ if(!class_exists('Product_Variable_Popover')) {
                         $items[]  = $item;
                     }
                     else {
+                        $value = Variation::get($value->id);
                         if(empty($value->image)) {
-                            $product = Product::gets($value->parent_id);
+                            $product = Product::get(['where' => ['id' => $value->parent_id], 'select' => 'id, title, image']);
                         }
                         $attr_name = '';
-                        foreach ($value->items as $attr_id) {
-                            $attr = Attribute::getItem($attr_id);
-                            if( have_posts($attr)) {
-                                $attr_name .= ' - <span style="font-weight: bold">'.$attr->title.'</span>';
+                        if(!empty($value->items)) {
+                            foreach ($value->items as $attr_id) {
+                                $attr = Attribute::getItem($attr_id);
+                                if( have_posts($attr)) {
+                                    $attr_name .= ' - <span style="font-weight: bold">'.$attr->title.'</span>';
+                                }
                             }
                         }
                         $value->title .= $attr_name;

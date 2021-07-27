@@ -5,13 +5,13 @@ Plugin class    : discounts
 Plugin uri      : http://sikido.vn
 Description     : Ứng dụng Tạo mã giảm giá sẽ là trợ thủ đắc lực giúp bạn nhanh chóng tạo ra nhiều mã khuyến mãi  trong khi có thể quản lý hiệu quả và tùy chỉnh dễ dàng các mã ấy.
 Author          : Nguyễn Hữu Trọng
-Version         : 2.2.0
+Version         : 2.2.1
  */
 define('DISCOUNT_NAME', 'discounts');
 
 define('DISCOUNT_PATH', Path::plugin(DISCOUNT_NAME));
 
-define('DISCOUNT_VERSION', '2.2.0');
+define('DISCOUNT_VERSION', '2.2.1');
 
 class discounts {
 

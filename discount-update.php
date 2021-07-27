@@ -30,7 +30,7 @@ Class Discount_Update_Version {
 Class Discount_Update_Database {}
 Class Discount_Update_Files {
     public static function Version_2_2_0($model) {
-        $path = FCPATH.VIEWPATH.'plugins/'.CART_NAME;
+        $path = FCPATH.VIEWPATH.'plugins/'.CART_NAME.'/';
         $Files = [
             'discount-database.php',
             'admin/discounts-navigation.php',
