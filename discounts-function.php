@@ -108,7 +108,7 @@ class Discount {
 
         //thời gian giảm giá
         $time_start        =  (!empty($discounts['time_start'])) ? Str::clear($discounts['time_start']) : '';
-        $time_end          =  (!empty($discounts['time_start'])) ? Str::clear($discounts['time_end']) : '';
+        $time_end          =  (!empty($discounts['time_end'])) ? Str::clear($discounts['time_end']) : 0;
         $time_status       =  (isset($discounts['time_status'])) ? (int)Str::clear($discounts['time_status']) : 0;
 
         //Áp dụng cho
@@ -117,7 +117,7 @@ class Discount {
 
         //Mức giảm giá tối đa
         $discount_type_maximum    =  (isset($discounts['discount_type_maximum'])) ? (int)Str::clear($discounts['discount_type_maximum']) : 0;
-        $discount_value_maximum   =  (!empty($discounts['discount_value_maximum'])) ? Str::clear($discounts['discount_value_maximum']) : '';
+        $discount_value_maximum   =  (!empty($discounts['discount_value_maximum'])) ? Str::clear($discounts['discount_value_maximum']) : 0;
 
         //Yêu cầu tối thiểu
         $discount_value_minimize    =  (isset($discounts['discount_value_minimize'])) ? (int)Str::clear($discounts['discount_value_minimize']) : 0;
