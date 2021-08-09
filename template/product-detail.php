@@ -83,12 +83,13 @@
     .coupon__tag {
         cursor: pointer;
         padding: 3px 12px;
-        border: 1px solid var(--theme-color);
+        border: 1px solid red;
         border-radius: 4px;
         font-size: 13px;
         font-weight: 500;
         line-height: 20px;
-        color: var(--theme-color);
+        color: #fff;
+        background-color: red;
         position: relative;
         margin: 0;
         display: inline-block;
@@ -96,33 +97,11 @@
         scroll-snap-align: start;
         flex: 0 0 auto;
     }
-    .coupon__tag::before, .coupon__tag::after {
-        content: "";
-        width: 10px;
-        height: 10px;
-        background-color: rgb(255, 255, 255);
-        border-width: 1px;
-        border-style: solid;
-        border-color: transparent var(--theme-color) var(--theme-color) transparent;
-        border-image: initial;
-        position: absolute;
-        top: 50%;
-        margin-top: -5px;
-        border-radius: 50%;
-    }
-    .coupon__tag::before {
-        left: -6px;
-        transform: rotate(-45deg);
-    }
-    .coupon__tag::after {
-        right: -6px;
-        transform: rotate(135deg);
-    }
 
     .product-detail-discount__popover {
         display: none;
         position: absolute; z-index: 99; width: 450px;
-        top: 50px;
+        top: 100%;
         left: 0px;
         background-color: #fff; padding:20px 20px 0 20px;
         border-radius: 10px;
