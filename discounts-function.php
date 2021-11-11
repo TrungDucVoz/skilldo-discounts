@@ -67,7 +67,7 @@ class Discount {
             $discounts['discount_type']              = (!empty($discounts['discount_type'])) ? Str::clear($discounts['discount_type']) : $old_discounts->discount_type;
             $discounts['discount_value']             = (!empty($discounts['discount_value'])) ? (int)Str::clear($discounts['discount_value']) : $old_discounts->discount_value;
             $discounts['time_start']                 = (!empty($discounts['time_start'])) ? Str::clear($discounts['time_start']) : $old_discounts->time_start;
-            $discounts['time_end']                   = (!empty($discounts['time_start'])) ? Str::clear($discounts['time_end']) : $old_discounts->time_end;
+            $discounts['time_end']                   = (!isset($discounts['time_start'])) ? Str::clear($discounts['time_end']) : $old_discounts->time_end;
             $discounts['time_status']                = (isset($discounts['time_status'])) ? (int)Str::clear($discounts['time_status']) : $old_discounts->time_status;
             $discounts['discount_condition']         = (!empty($discounts['discount_condition'])) ? Str::clear($discounts['discount_condition']) : $old_discounts->discount_condition;
             $discounts['discount_condition_value']   = (!empty($discounts['discount_condition_value'])) ? Str::clear($discounts['discount_condition_value']) : $old_discounts->discount_condition_value;
