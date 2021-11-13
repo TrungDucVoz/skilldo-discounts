@@ -142,6 +142,10 @@ class Discount {
                 $status = 'stop';
             }
         }
+        
+        if (!is_serialized($discount_condition_value)){
+            $discount_condition_value    = serialize($discount_condition_value);
+        }
 
         $data = compact( 'code','image', 'name', 'excerpt', 'discount_count_infinity', 'status', 'discount_count', 'discount_use', 'discount_type', 'discount_value', 'time_start', 'time_end', 'time_status', 'discount_condition', 'discount_condition_value', 'discount_type_maximum', 'discount_value_maximum', 'discount_type_minimize', 'discount_value_minimize', 'discount_customer', 'discount_customer_value', 'discount_customer_use', 'discount_customer_count');
         $data = apply_filters( 'pre_insert_discounts_data', $data, $discounts, $update ? (int) $id : null );
